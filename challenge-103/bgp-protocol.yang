@@ -1,0 +1,35 @@
+module bgp-protocol {
+  namespace "http://devnetexperttraining.com/bgp-protocol";
+  prefix bgp;
+
+// Requirement A
+//
+
+  container bgp-protocol {
+    // Requirement B
+    //
+    leaf router-id {
+      type inet:ipv4-address;
+      mandatory true;
+    }
+    leaf local-as {
+      type as-number;
+      mandatory true;
+    }
+    // Requirement C
+
+      // Requirement D
+      //
+
+      // Requirement E
+      //
+
+      // Requirement F
+      //
+
+      // Requirement G
+      //
+
+    //
+  }
+}

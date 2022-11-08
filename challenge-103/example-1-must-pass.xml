@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <bgp-protocol xmlns="http://devnetexperttraining.com/bgp-protocol">
+    <router-id>192.168.1.255</router-id>
+    <local-as>65000</local-as>
+    <vrf>
+      <name>A</name>
+    </vrf>
+    <vrf>
+      <name>B</name>
+    </vrf>
+    <neighbors>
+      <neighbor>
+        <address>1.1.1.1</address>
+        <remote-as>4200000001</remote-as>
+        <admin-state>ENABLED</admin-state>
+        <password>1234QWer!</password>
+      </neighbor>
+      <neighbor>
+        <address>2.2.2.2</address>
+        <remote-as>4200000002</remote-as>
+        <vrf>B</vrf>
+        <admin-state>ENABLED</admin-state>
+        <ttl>255</ttl>
+      </neighbor>
+      <neighbor>
+        <address>3.3.3.3</address>
+        <remote-as>65000</remote-as>
+        <admin-state>DISABLED</admin-state>
+      </neighbor>
+    </neighbors>
+  </bgp-protocol>
+</data>
