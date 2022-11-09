@@ -3,10 +3,18 @@ module bgp-protocol {
   prefix bgp;
 
 // Requirement A
+import ietf-inet-types{
+  prefix "inet";
+}
 //
 
   container bgp-protocol {
     // Requirement B
+    typedef as-number{
+      type uint32{
+        range "64512..65534 | 4200000000..4294967294";
+      }
+    }
     //
     leaf router-id {
       type inet:ipv4-address;
@@ -17,19 +25,72 @@ module bgp-protocol {
       mandatory true;
     }
     // Requirement C
+    list vrf{
+      key name;
+      leaf name{
+        type string;
+      }
+    }
+    container neighbors {
+      list neighbor{
+        key address;
+        leaf address{
+          type inet:ipv4-address;
+        }
+        // Requirement D
+        leaf remote-as{
+          type as-number;
+          mandatory true;
+        }
+        //
 
-      // Requirement D
+        leaf vrf {
+          type leafref {
+            path "../../../vrf/name";
+          }
+        }
+
+        // Requirement E
+        leaf admin-state {
+          mandatory true;
+          type enumeration {
+            enum ENABLED{
+              value 1;
+            }
+            enum DISABLED{
+              value 2;
+            }
+          }
+        }
+        //
+
+        // Requirement F
+        leaf operational-state {
+          config false;
+          type enumeration {
+            enum UP;
+            enum DOWN;
+          }
+        }
+        //
+
+        // Requirement G
+        choice password-or-gtsm {
+          when "../../local-as != remote-as";
+          case password{
+            leaf password { 
+              type string;
+            }
+          }
+          case gtsm {
+            leaf ttl {
+              type uint8;
+            }
+          }
+        }
       //
-
-      // Requirement E
-      //
-
-      // Requirement F
-      //
-
-      // Requirement G
-      //
-
+      }
+    }
     //
   }
 }
