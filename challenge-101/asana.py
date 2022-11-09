@@ -23,6 +23,8 @@ class AsanaRestApi():
 ## Requirement B
 
 ##
+@click.group()
+@click.pass_context
 def challenge101(ctx):
     ctx.ensure_object(dict)
     config = json.load(open("config.json"))
@@ -32,20 +34,35 @@ def challenge101(ctx):
 ## Requirement C
 
 ##
+@challenge101.command()
+@click.pass_obj
+@click.option("--outputformat", type=click.Choice(['lines','raw']))
 def listprojects(obj, outputformat):
     projects = obj["asana"].get("/projects")
 
     print("Projects:")
 
     ## Requirement D
-
+    if outputformat == 'raw':
+        for i in projects['data']:
+            print(i)
+    elif outputformat == 'lines':
+        for i in projects['data']:
+            print(f"{i['name']} GID={i['gid']}")
     ##
 
 ## Requirement E
 
 ##
+@challenge101.command()
+@click.pass_obj
+@click.option("--project", type=int, help="Project GID", required=True)
+@click.option("--showgid", "--g", is_flag=True, help="Show GID of tasks")
 def listtasks(obj, project, showgid):
     print("Tasks in project:")
+    tasks = obj["asana"].get(f"/tasks?project={project}")
+    for task in tasks['data']:
+        task_details = obj["asana"].get(f"/tasks/{task['gid']}")
     ## Requirement F
 
     ##
@@ -58,11 +75,15 @@ def listtasks(obj, project, showgid):
 ## Requirement G
 
 ##
+@challenge101.command()
+@click.pass_obj
+@click.option("--task", type=int, required=True)
+@click.option("--completed/--not-completed", is_flag=True, help="Mark task as completed or not completed.")
 def setstatus(obj, task, completed):
     body = {
-        ## Requirement H
-
-        ##
+        "data": {
+            "completed": completed
+        }
     }
     response = obj["asana"].put("/tasks/" + str(task), body=body)
     print(response["data"]["name"] + " is completed:" + str(response["data"]["completed"]))
@@ -71,6 +92,7 @@ def setstatus(obj, task, completed):
 ## Requirement I (optional)
 
 ##
+#challenge101 = click.CommandCollection(sources=[listprojects, listtasks, setstatus])
 
 
 if __name__ == "__main__":
