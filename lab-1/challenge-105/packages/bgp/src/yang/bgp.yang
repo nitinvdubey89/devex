@@ -1,0 +1,90 @@
+module bgp {
+
+  namespace "http://example.com/bgp";
+  prefix bgp;
+
+  import ietf-inet-types {
+    prefix inet;
+  }
+  import tailf-common {
+    prefix tailf;
+  }
+  import tailf-ncs {
+    prefix ncs;
+  }
+
+  description
+    "Bla bla...";
+
+  revision 2016-01-01 {
+    description
+      "Initial revision.";
+  }
+
+  list bgp {
+    description "This is an RFS skeleton service";
+
+    key name;
+    leaf name {
+      tailf:info "Unique service id";
+      tailf:cli-allow-range;
+      type string;
+    }
+
+    uses ncs:service-data;
+    ncs:servicepoint bgp-servicepoint;
+
+    // may replace this with other ways of refering to the devices.
+    leaf-list device {
+      type leafref {
+        path "/ncs:devices/ncs:device/ncs:name";
+      }
+    }
+
+    // replace with your own stuff here
+    leaf asn {
+      mandatory true;
+      type enumeration {
+        enum Dev {
+          value 100;
+        }
+        enum Net {
+          value 200;
+        }
+        enum Expert {
+          value 300;
+        }
+      }
+    }
+
+    list neighbors {
+      key name;
+
+      leaf name {
+        type string;
+      }
+
+      choice ipv4-or-ipv6 {
+        case ipv4 {
+          leaf ipv4-peer-address {
+            type inet:ipv4-address;
+            mandatory true;
+          }
+        }
+        case ipv6 {
+          leaf ipv6-peer-address {
+            type inet:ipv6-address;
+            mandatory true;
+          }
+        }
+      }
+      
+      leaf remote-as {
+        mandatory true;
+        type uint32 {
+          range "64512..65535 | 4200000000..4278945612";
+        }
+      }
+    }
+  }
+}

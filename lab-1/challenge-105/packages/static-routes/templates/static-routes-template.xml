@@ -1,0 +1,19 @@
+<config-template xmlns="http://tail-f.com/ns/config/1.0">
+  <devices xmlns="http://tail-f.com/ns/ncs">
+    <device>
+      <name>Router3</name>
+      <config>
+          <ip xmlns="urn:ios">
+            <route>
+              <ip-route-forwarding-list>
+                <prefix>10.{$SEGMENT}.{$SUBNET}.0</prefix>
+                <mask>255.255.255.0</mask>
+                <forwarding-address>{$NEXTHOP}</forwarding-address>
+                <name>{$NAME}</name>
+              </ip-route-forwarding-list>
+            </route>
+          </ip>
+      </config>
+    </device>
+  </devices>
+</config-template>
