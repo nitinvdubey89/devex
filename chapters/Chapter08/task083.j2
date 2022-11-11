@@ -1,5 +1,0 @@
-{%- for route in static %}
-{%- for subnet in route.subnets %}
-ip route {{ subnet.network }} {{ subnet.mask }} {{ route.nexthop }}
-{%- endfor %}
-{%- endfor %}

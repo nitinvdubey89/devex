@@ -1,6 +1,0 @@
-router ospf {{ ospf.process_id }}
-{%- for network_statement in network_statements %}
-{%- for subnet in network_statement.subnets %}
-  network {{ subnet.network }} {{ subnet.wildcard_mask }} area {{ network_statement.area }}
-{%- endfor %}
-{%- endfor %}

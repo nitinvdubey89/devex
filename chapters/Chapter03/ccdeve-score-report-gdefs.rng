@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:nma="urn:ietf:params:xml:ns:netmod:dsdl-annotations:1" xmlns:mc="http://markciecior.com/score" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"><define name="ccdeve-score-report__domainperformance"><data type="unsignedByte"><param name="minInclusive">0</param><param name="maxInclusive">100</param></data></define></grammar>
