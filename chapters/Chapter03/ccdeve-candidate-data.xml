@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+    <candidate xmlns="http://markciecior.com/yang1">
+        <name>Mark</name>
+        <age>36</age>
+        <certification>CCIE R/S,DC</certification>
+    </candidate>
+</data>

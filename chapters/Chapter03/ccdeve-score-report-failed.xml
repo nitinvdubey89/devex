@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+    <score-report xmlns="http://markciecior.com/score">
+        <candidate-name>Mark</candidate-name>
+        <status>FAILED</status>
+        <software-design>50</software-design>
+        <infrastructure-as-code>50</infrastructure-as-code>
+        <automation>50</automation>
+        <containers>50</containers>
+        <security>50</security>
+    </score-report>
+</data>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+    <score-report xmlns="http://markciecior.com/score">
+        <candidate-name>Mark</candidate-name>
+        <status>PASSED</status>
+        <devnet-number>28274</devnet-number>
+    </score-report>
+</data>

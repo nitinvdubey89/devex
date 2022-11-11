@@ -1,0 +1,31 @@
+<config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+      <ip>
+        <access-list>
+          <extended xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-acl">
+            <name>challenge-207-pod-16</name>
+            <access-list-seq-rule>
+              <sequence>10</sequence>
+              <ace-rule>
+                <action>permit</action>
+                <protocol>tcp</protocol>
+                <any/>
+                <dst-host-address>10.207.16.1</dst-host-address>
+                <dst-host>10.207.16.1</dst-host>
+                <dst-eq>636</dst-eq>
+              </ace-rule>
+            </access-list-seq-rule>
+            <access-list-seq-rule>
+              <sequence>20</sequence>
+              <ace-rule>
+                <action>deny</action>
+                <protocol>ip</protocol>
+                <any/>
+                <dst-any/>
+              </ace-rule>
+            </access-list-seq-rule>
+          </extended>
+        </access-list>
+      </ip>
+    </native>
+</config>

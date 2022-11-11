@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+    <device xmlns="http://markciecior.com/device">
+        <hostname>Rtr-1</hostname>
+        <vrfs>VRFA</vrfs>
+        <primary-loopback>
+            <number>0</number>
+            <ip-address>1.2.3.4</ip-address>
+            <prefix-length>32</prefix-length>
+        </primary-loopback>
+        <vlans>
+            <id>10</id>
+            <name>Data</name>
+        </vlans>
+    </device>
+</data>

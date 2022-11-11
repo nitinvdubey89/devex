@@ -1,0 +1,25 @@
+module ccdeve-candidate-module {
+
+    namespace "http://markciecior.com/yang1";
+
+    prefix "mc";
+
+    container candidate {
+
+        leaf name {
+            type string;
+        }
+
+        leaf age {
+            type int8;
+        }
+
+        leaf-list certification {
+            type string;
+        }
+
+
+    }
+
+
+}
