@@ -1,0 +1,23 @@
+{% for vlan in vlans %}
+vlan {{ vlan.id }}
+  name {{ vlan.name }}
+
+interface vlan {{ vlan.id }}
+  ip address {{ vlan.ip }}
+  description {{ vlan.name }}
+  no shutdown
+
+{% endfor %}
+
+{% for port in interfaces %}
+interface {{ port.name }}
+{% if port.type == 'pc' %}
+  switchport mode access
+  switchport access vlan {{ vlans | selectattr("name", "in", port.vlan_assignment) | map(attribute="id") | first }}
+{% endif %}
+{% if port.type == 'server' %}
+  switchport mode trunk
+  switchport trunk allowed vlan {{ vlans | selectattr("name", "in", port.vlan_assignment) | map(attribute="id") | join(",") }}
+{% endif %}
+
+{% endfor %}
