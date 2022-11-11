@@ -1,0 +1,58 @@
+module ccdeve-topology-module {
+
+    namespace "http://markciecior.com/topology";
+
+    prefix "mc-topo";
+
+    grouping link {
+        leaf-list device {
+            type leafref {
+                path "../../../devices/name";
+            }
+        }
+        leaf-list ip_address {
+            type string;
+        }
+        leaf-list interface {
+            type string;
+        }
+    }
+
+    container topology {
+
+        list devices {
+            key name;
+
+            leaf name {
+                mandatory true;
+                type string;
+            }
+
+            leaf sku {
+                type string;
+            }
+
+        }
+
+        list links {
+            key name;
+
+            leaf name {
+                mandatory true;
+                type string;
+            }
+
+        container a {
+            uses link;
+        }
+        container b {
+            uses link;
+        }
+        leaf cable_length {
+            type decimal64 {
+                fraction-digits 2;
+            }
+        }
+        }
+    }
+}

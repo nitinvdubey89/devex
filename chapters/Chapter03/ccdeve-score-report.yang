@@ -1,0 +1,62 @@
+module ccdeve-score-report {
+
+    namespace "http://markciecior.com/score";
+
+    prefix "mc";
+
+    typedef domainperformance {
+        type uint8 {
+            range "0..100";
+        }
+        description "percent";
+    }
+
+    container score-report {
+        
+        leaf candidate-name {
+            mandatory true;
+            type string;
+        }
+        leaf status {
+            mandatory true;
+            type enumeration {
+                enum PASSED {
+                    value 1;
+                }
+                enum FAILED {
+                    value 2;
+                }
+            }
+        }
+        choice report-or-cert {
+            case cert {
+                when "status = 'PASSED'";
+                leaf devnet-number {
+                    type int32;
+                    config false;
+                }
+            }
+            case report {
+                when "status = 'FAILED'";
+                leaf software-design {
+                    type domainperformance;
+                }
+                leaf infrastructure-as-code {
+                    type domainperformance;
+                }
+                leaf automation {
+                    type domainperformance;
+                }
+                leaf containers {
+                    type domainperformance;
+                }
+                leaf security {
+                    type domainperformance;
+                }
+            }
+        }
+    }
+
+
+
+}

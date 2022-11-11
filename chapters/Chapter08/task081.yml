@@ -1,0 +1,4 @@
+network: 10.1.1.0
+subnetmask: 255.255.255.0
+nexthop: 10.0.0.98
+tag: Task081

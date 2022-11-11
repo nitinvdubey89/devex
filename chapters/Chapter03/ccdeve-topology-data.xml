@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+    <topology xmlns="http://markciecior.com/topology">
+        <devices>
+            <name>Mark</name>
+            <sku>MARK-1</sku>
+        </devices>
+        <devices>
+            <name>Kat</name>
+            <sku>KAT-1</sku>
+        </devices>
+        <links>
+            <name>Link1</name>
+            <a>
+                <device>Mark</device>
+                <ip_address>1.1.1.1</ip_address>
+                <interface>Gig1</interface>
+            </a>
+            <b>
+                <device>Kat</device>
+                <ip_address>1.1.1.2</ip_address>
+                <interface>Gig2</interface>
+            </b>
+            <cable_length>1.01</cable_length>
+        </links>
+    </topology>
+</data>
